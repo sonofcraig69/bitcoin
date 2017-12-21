@@ -1,3 +1,15 @@
+===========
+NEW README:
+===========
+
+Objectives:
+- Make mining asic resistant
+- Increase block size to 8MB
+- Change difficulty every block
+- Add 10% developers' fee
+
+OLD README:
+=====================================
 Bitcoin Core integration/staging tree
 =====================================
 
