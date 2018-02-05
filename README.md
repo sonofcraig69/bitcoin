@@ -2,8 +2,8 @@ NEW README:
 ===========
 
 Objectives:
-- Make mining asic resistant
-- Increase block size to 8MB
+- Make mining asic resistant: integrate new pow into the code
+- Increase block size to 8MB (Done)
 - Change difficulty every block
 - Add 10% developers' fee
 
