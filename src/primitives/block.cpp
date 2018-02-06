@@ -15,6 +15,24 @@ uint256 CBlockHeader::GetHash() const
     return SerializeHash(*this);
 }
 
+uint256 CBlockHeader::GetPoWHash(int nHeight) const
+{
+   uint256 thash;
+   if(Params().NetworkIDString() == CBaseChainParams::TESTNET || nHeight >= 347000) // New Lyra2re2 Testnet
+   {
+        lyra2re2_hash(BEGIN(nVersion), BEGIN(thash));
+   }
+   else if(nHeight >= 208301)
+   {
+   	    lyra2re_hash(BEGIN(nVersion), BEGIN(thash));
+   }
+   else
+   {
+   	    scrypt_N_1_1_256(BEGIN(nVersion), BEGIN(thash), 10);
+   }
+   return thash;
+}
+
 std::string CBlock::ToString() const
 {
     std::stringstream s;
