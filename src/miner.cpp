@@ -173,6 +173,7 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     // Create developer fee transaction
     CMutableTransaction devFeeTx;
     devFeeTx.vin[0].prevout.SetNull();
+    devFeeTx.vin[0].prevout = coinbaseTx.vout[0] // check this is correct implementaton
     devFeeTx.vout.resize(1);
     devFeeTx.vout[0].scriptPubKey = ""; // insert dev address here
     devFeeTx.vout[0].nValue = coinbaseTx.getValueOut()*0.1 // value of 10% coins mined
