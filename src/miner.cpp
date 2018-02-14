@@ -172,11 +172,11 @@ std::unique_ptr<CBlockTemplate> BlockAssembler::CreateNewBlock(const CScript& sc
     
     // Create developer fee transaction
     CMutableTransaction devFeeTx;
-    coinbaseTx.vin[0].prevout.SetNull();
-    coinbaseTx.vout.resize(1);
-    coinbaseTx.vout[0].scriptPubKey = ""; // insert dev address here
-    coinbaseTx.vout[0].nValue = coinbaseTx.getValueOut()*0.1 // value of 10% coins mined
-    coinbaseTx.vin[0].scriptSig = CScript() << nHeight << OP_0; // check what this shit means
+    devFeeTx.vin[0].prevout.SetNull();
+    devFeeTx.vout.resize(1);
+    devFeeTx.vout[0].scriptPubKey = ""; // insert dev address here
+    devFeeTx.vout[0].nValue = coinbaseTx.getValueOut()*0.1 // value of 10% coins mined
+    devFeeTx.vin[0].scriptSig = CScript() << nHeight << OP_0; // check what this shit means
     pblock->vtx[0] = MakeTransactionRef(std::move(devFreeTx)); // and this
 
     LogPrintf("CreateNewBlock(): block weight: %u txs: %u fees: %ld sigops %d\n", GetBlockWeight(*pblock), nBlockTx, nFees, nBlockSigOpsCost);
